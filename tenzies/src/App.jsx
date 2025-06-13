@@ -3,14 +3,15 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+export default function App() {
  
   console.log("so it begins...")
   return (
-   <main>
-    
-   </main>
+    <>
+        <main>This is placeholder text</main>
+    </>
+   
   )
 }
 
-export default App
+

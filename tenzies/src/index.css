@@ -4,5 +4,15 @@
 
 body {
     margin: 0;
+    background-color: #0B2434;
+    padding: 20px;
+    height: 100vh;
+   
+    
 }
 
+main {
+    background-color: #F5F5F5;
+    height: 300px;
+    border-radius: 5px
+}
