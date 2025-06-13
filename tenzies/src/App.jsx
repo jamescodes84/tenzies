@@ -6,7 +6,7 @@ import Die from './components/Die'
 
 export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice())
- 
+  
   function generateAllNewDice(){
     let randomValues = []
     for (let i = 0; i < 10; i++){
@@ -15,8 +15,11 @@ export default function App() {
     console.log(randomValues)
     return randomValues
   }
+  let diceElements = dice.map(num => <Die value={num} />)
+  function rollDice(){
+     setDice(generateAllNewDice())
+  }
   
-  const diceElements = dice.map(num => <Die value={num} />)
   
   return (
     <>
@@ -24,6 +27,7 @@ export default function App() {
           <div className="dice-container">
               {diceElements}
           </div>
+          <button onClick={rollDice} class="roll-button">Test</button>
         </main>
     </>
    
