@@ -8,12 +8,13 @@ export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice())
   
   function generateAllNewDice(){
-    let randomValues = []
-    for (let i = 0; i < 10; i++){
-      randomValues.push({ value: Math.ceil(Math.random() * 6), isHeld: false , id: nanoid()})
-    }
-    console.log(randomValues)
-    return randomValues
+    return new Array(10)
+            .fill(0)
+            .map(() => ({
+                value: Math.ceil(Math.random() * 6),
+                isHeld: true,
+                id: nanoid()
+            }))
   }
 
   let diceElements = dice.map(num => <Die value={num.value}  id={num.id} key={num.id} isHeld={num.isHeld} />)
