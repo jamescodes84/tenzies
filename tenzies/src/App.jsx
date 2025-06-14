@@ -113,6 +113,10 @@ export default function App() {
     }))
    
   }
+
+  function resetGame(){
+    setDice(generateAllNewDice())
+  }
   
   let diceElements = dice.map(num => <Die holdFunc={hold} value={num.value}  id={num.id} key={num.id} isHeld={num.isHeld} />)
  
@@ -123,12 +127,14 @@ export default function App() {
     <>
         <main>
           {gameWon && <ReactConfetti />}
-          <h1 className="title">Tenzies</h1>
-            <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+          
+          {gameWon ? <h1>Game Over</h1>:<h1 className="title">Tenzies</h1>}
+            {gameWon ?<p></p> :<p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>}
           <div className="dice-container">
               {diceElements}
           </div>
-          <button onClick={rollDice} className="roll-dice" >{gameWon ?"New Game":"Roll Dice"}</button>
+          {!gameWon && <button onClick={rollDice} className="roll-dice" >Roll Dice</button>}
+          {gameWon && <button onClick={resetGame} className="roll-dice" >New Game</button>}
         </main>
     </>
    
