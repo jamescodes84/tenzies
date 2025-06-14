@@ -7,7 +7,7 @@ import {nanoid } from 'nanoid'
 import ReactConfetti from 'react-confetti'
 
 export default function App() {
-  const [dice, setDice] = React.useState(generateAllNewDice())
+  const [dice, setDice] = React.useState(() => generateAllNewDice())
   let gameWon = gameOver()
 
   if (gameWon){
@@ -129,12 +129,12 @@ export default function App() {
           {gameWon && <ReactConfetti />}
           
           {gameWon ? <h1>Game Over</h1>:<h1 className="title">Tenzies</h1>}
-            {gameWon ?<p></p> :<p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>}
+            {gameWon ?<p ></p> :<p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>}
           <div className="dice-container">
               {diceElements}
           </div>
-          {!gameWon && <button onClick={rollDice} className="roll-dice" >Roll Dice</button>}
-          {gameWon && <button onClick={resetGame} className="roll-dice" >New Game</button>}
+         <button onClick={gameWon ? resetGame : rollDice} className="roll-dice" >{gameWon ? "New Game":"Roll Dice"}</button>
+          
         </main>
     </>
    
