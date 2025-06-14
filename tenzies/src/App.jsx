@@ -17,12 +17,19 @@ export default function App() {
             }))
   }
 
-  let diceElements = dice.map(num => <Die  value={num.value}  id={num.id} key={num.id} isHeld={num.isHeld} />)
+  
   function rollDice(){
      setDice(generateAllNewDice())
   }
+
+  function hold(buttonID) {
+    console.log(buttonID)
+    //need to map over dice elements and if the dice element id equals buttonID, change held status
+   // dice.map(dice => dice.id)
+   
+  }
   
-  
+  let diceElements = dice.map(num => <Die holdFunc={hold} value={num.value}  id={num.id} key={num.id} isHeld={num.isHeld} />)
 
   return (
     <>
@@ -30,7 +37,7 @@ export default function App() {
           <div className="dice-container">
               {diceElements}
           </div>
-          <button onClick={rollDice} className="roll-dice">Roll Dice</button>
+          <button onClick={rollDice} className="roll-dice" >Roll Dice</button>
         </main>
     </>
    
