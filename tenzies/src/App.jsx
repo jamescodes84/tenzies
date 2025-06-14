@@ -4,6 +4,8 @@ import viteLogo from '/vite.svg'
 import Die from './components/Die'
 //import nanoid from './node_modules/nanoid'
 import {nanoid } from 'nanoid'
+import ReactConfetti from 'react-confetti'
+
 export default function App() {
   const [dice, setDice] = React.useState(generateAllNewDice())
   let gameWon = gameOver()
@@ -114,9 +116,13 @@ export default function App() {
   
   let diceElements = dice.map(num => <Die holdFunc={hold} value={num.value}  id={num.id} key={num.id} isHeld={num.isHeld} />)
  
+
+
+
   return (
     <>
         <main>
+          {gameWon && <ReactConfetti />}
           <h1 className="title">Tenzies</h1>
             <p className="instructions">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
           <div className="dice-container">
