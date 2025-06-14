@@ -12,30 +12,33 @@ export default function App() {
             .fill(0)
             .map(() => ({
                 value: Math.ceil(Math.random() * 6),
-                isHeld: true,
+                isHeld: false,
                 id: nanoid()
             }))
   }
 
   
   function rollDice(){
-     setDice(generateAllNewDice())
+     setDice(prevDice => prevDice.map(die => {
+      if (die.isHeld === true){
+        return die
+      } else {
+        return {
+                value: Math.ceil(Math.random() * 6),
+                isHeld: false,
+                id: nanoid()
+            }
+      }
+    }))
   }
 
   function hold(buttonID) {
-    
-    //need to map over dice elements and if the dice element id equals buttonID, change held status
-   // dice.map(dice => dice.id)
-
-   // brute force for loop method
-   
-      //set button id
-/*setDice(dice.map(die => {
-        if (die.id == buttonID){
-          die.isHeld = !die.isHeld
-        }
-      }))*/
-   
+        
+    // **** CRITICAL PIECE OF CODE ******
+    // For each die in the old dice state,
+    // check to see if the id matches the id of the button clicked,
+    // if it does, change its isHeld value and update state,
+    // otherwise, update state with old value of die   
     setDice(prevDice => prevDice.map(die => {
       if (die.id === buttonID){
         return {...die, isHeld: !die.isHeld}
