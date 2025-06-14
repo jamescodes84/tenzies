@@ -23,9 +23,26 @@ export default function App() {
   }
 
   function hold(buttonID) {
-    console.log(buttonID)
+    
     //need to map over dice elements and if the dice element id equals buttonID, change held status
    // dice.map(dice => dice.id)
+
+   // brute force for loop method
+   
+      //set button id
+/*setDice(dice.map(die => {
+        if (die.id == buttonID){
+          die.isHeld = !die.isHeld
+        }
+      }))*/
+   
+    setDice(prevDice => prevDice.map(die => {
+      if (die.id === buttonID){
+        return {...die, isHeld: !die.isHeld}
+      } else {
+        return die
+      }
+    }))
    
   }
   
